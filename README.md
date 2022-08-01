@@ -26,7 +26,7 @@ https://docs.opencv.org/4.2.0/da/d60/tutorial_face_main.html#tutorial_face_eigen
 Modelo utilizado: LBPHFaceRecognizer
 https://docs.opencv.org/3.4/df/d25/classcv_1_1face_1_1LBPHFaceRecognizer.html
 
-# Requisitos:
+# REQUISITOS:
 Entrenar el modelo antes de usar el challenge, en el lugar de trabajo habitual y con la iluminación habitual. 
 
 La variable de entorno SECUREMIRROR_CAPTURES debe existir y apuntar al path donde el server bluetooth deposita las capturas.
