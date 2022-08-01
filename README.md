@@ -1,6 +1,7 @@
 # ChallengeMM_Reco_Facial
+ChallengeMM recognized by a regular user
 
-# DESCRIPCION y FIABILIDAD
+# DESCRIPCION y FIABILIDAD:
 Reco_Facial es un challenge que comprueba si el usuario es un usuario habitual (empleado de la empresa), lo hace mediante
 reconocimiento facial donde da como resultado 1 si es un usuario habitual, sino puede dar valores de 0 (si el challenge 
 no se ejecuta por falta de cámara del pc o móvil vinculado mediante bluetooth, o si no detecta ningún rostro en la captura),
@@ -25,7 +26,7 @@ https://docs.opencv.org/4.2.0/da/d60/tutorial_face_main.html#tutorial_face_eigen
 Modelo utilizado: LBPHFaceRecognizer
 https://docs.opencv.org/3.4/df/d25/classcv_1_1face_1_1LBPHFaceRecognizer.html
 
-# requisitos:
+# Requisitos:
 Entrenar el modelo antes de usar el challenge, en el lugar de trabajo habitual y con la iluminación habitual. 
 
 La variable de entorno SECUREMIRROR_CAPTURES debe existir y apuntar al path donde el server bluetooth deposita las capturas.
