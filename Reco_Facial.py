@@ -1,15 +1,13 @@
 
-from asyncio.windows_events import NULL
-from winreg import CloseKey
 import cv2
+import numpy as np
 import os
-import imutils
-import time
 import tkinter as tk
 from tkinter import messagebox
-import numpy as np
 from pathlib import Path
 import time
+
+
 #para instalar el modulo tkinter simplemente:
 #pip3 install tkinter
 # o bien py -m pip install tkinter
@@ -78,7 +76,7 @@ def executeChallenge():
     
     #popup pidiendo interaccion
     # pregunta si el usuario tiene movil con capacidad foto
-    ca=messagebox.askquestion(title= "Recon_Facial", message="Tines Pc con camara apta para tomar foto")
+    ca=messagebox.askquestion(title= "Recon_Facial", message="Tines Pc con camara apta para tomar foto/video")
     print (ca)
     
     if (ca=="yes"):
@@ -134,14 +132,6 @@ def executeChallenge():
     #mecanismo de lock END
     #-----------------------
     os.remove(dataPath+"/"+"lock") 
-
-    #construccion de la respuesta
-    #cad="%d"%(resultado)
-    #key = bytes(cad,'utf-8')
-    #print (key)
-    #key_size = len(key)
-    #res =(key, key_size)
-    #print ("result:",res)
     return res
 
 if __name__ == "__main__":

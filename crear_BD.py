@@ -1,5 +1,4 @@
 
-from asyncio.windows_events import NULL
 import cv2
 import os
 import imutils
@@ -42,13 +41,13 @@ if not os.path.exists(personPath):
     print('Carpeta creada: ',personPath)
     os.makedirs(personPath)
 
-ca=messagebox.askquestion(title= "Recon_Facial", message="Tines Pc con camara apta para tomar videos")
+ca=messagebox.askquestion(title= "Recon_Facial", message="Tines Pc con camara apta para tomar foto/video")
 print (ca)
 if (ca=="yes"):
     #En la siguiente línea se realiza un video en directo
     cap = cv2.VideoCapture(0,cv2.CAP_DSHOW)
 else:
-    ca1=messagebox.askquestion(title= "Recon_Facial", message="Tienes un movil con bluetooth activo y emparejado con tu PC con capacidad para tomar un video")
+    ca1=messagebox.askquestion(title= "Recon_Facial", message="Tienes un movil con bluetooth activo y emparejado con tu PC con capacidad para tomar video")
     if (ca1=="yes"):
         #En la siguiente línea se lee  un video almacenado para hacer pruebas
         cap = cv2.VideoCapture(d_Path+ "/" + 'Video.mp4')
@@ -91,14 +90,14 @@ for nameDir in peopleList:
     print('Leyendo las imagenes')
 
     for fileName in os.listdir(personPath):
-        print('Rostros: ', nameDir + '/' + fileName)
+        #print('Rostros: ', nameDir + '/' + fileName)
         labels.append(label)
         facesData.append(cv2.imread(personPath+'/'+fileName,0))
         image = cv2.imread(personPath+'/'+fileName,0)
         #cv2.imshow('image',image)
         #cv2.waitKey(10)
     label = label + 1
-print('labels= ',labels)
+#print('labels= ',labels)
 #print('Numero de etiquetas 0: ',np.count_nonzero(np.array(labels)==0))
 #print('Numero de etiquetas 1: ',np.count_nonzero(np.array(labels)==1))
 #print('Numero de etiquetas 2: ',np.count_nonzero(np.array(labels)==2))
