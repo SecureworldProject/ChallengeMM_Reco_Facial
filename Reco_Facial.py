@@ -1,4 +1,5 @@
 
+from asyncio.windows_events import NULL
 import cv2
 import numpy as np
 import os
@@ -19,36 +20,15 @@ props_dict={}
 def init(props):
     global props_dict
     print("Python: Enter in init")
-    res=executeChallenge()
-    print(res)
+    
     #props es un diccionario
     props_dict= props
-    if res <= 0:
+    resultado=executeChallenge()
+    if (resultado[1]>0):
         return 0
-    elif res > 0 and res <= 70:
-        return 1
-    elif res> 70 and res<= 75:
-        return 2
-    elif res> 75 and res<= 80:
-        return 3
-    elif res> 80 and res<= 85:
-        return 4
-    elif res> 85 and res<= 90:
-        return 5
-    elif res> 90 and res<= 95:
-        return 6
-    elif res> 95 and res<= 100:
-        return 7
-    elif res> 100 and res<= 105:
-        return 8
-    elif res> 105 and res<= 110:
-        return 9
-    elif res> 110 and res<= 115:
-        return 10
-    elif res> 115 and res<= 120:
-        return 11
-    elif res> 120:
-        return 12
+    else: 
+        return -1
+    
 
            
 def executeChallenge():
@@ -87,10 +67,16 @@ def executeChallenge():
       if (ca1=="yes"):
           #En la siguiente línea se lee  un video almacenado para hacer pruebas
           cap = cv2.VideoCapture(dataPath+ "/" + 'Video.mp4')
-        
+            
       else:
+          #mecanismo de lock END
+          #-----------------------
          os.remove(dataPath+"/"+"lock")
-         return 0 # clave cero, longitud cero
+         key_size = 0
+         result =(NULL, key_size)
+         print ("result:",result)
+         return result
+         
 
     faceClassif = cv2.CascadeClassifier(cv2.data.haarcascades+'haarcascade_frontalface_default.xml')
     print("MODELO LEIDO")
@@ -132,7 +118,45 @@ def executeChallenge():
     #mecanismo de lock END
     #-----------------------
     os.remove(dataPath+"/"+"lock") 
-    return res
+
+
+    #construccion de la respuesta
+    if res <= 0:
+        resp= 0
+    elif res > 0 and res <= 70:
+        resp= 1
+    elif res> 70 and res<= 75:
+        resp= 2
+    elif res> 75 and res<= 80:
+        resp= 3
+    elif res> 80 and res<= 85:
+        resp= 4
+    elif res> 85 and res<= 90:
+        resp= 5
+    elif res> 90 and res<= 95:
+        resp= 6
+    elif res> 95 and res<= 100:
+        resp= 7
+    elif res> 100 and res<= 105:
+        resp= 8
+    elif res> 105 and res<= 110:
+        resp= 9
+    elif res> 110 and res<= 115:
+        resp= 10
+    elif res> 115 and res<= 120:
+        resp= 11
+    elif res> 120:
+        resp= 12
+
+
+
+    cad="%d"%(resp)
+    key = bytes(cad,'utf-8')
+    key_size = len(key)
+    result =(key, key_size)
+    print ("result:",result)
+    return result
+    
 
 if __name__ == "__main__":
     midict={}
