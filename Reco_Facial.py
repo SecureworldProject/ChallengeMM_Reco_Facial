@@ -6,7 +6,7 @@ import os
 import tkinter as tk
 from tkinter import messagebox
 from pathlib import Path
-import time
+import lock
 
 
 #para instalar el modulo tkinter simplemente:
@@ -38,12 +38,10 @@ def executeChallenge():
 
     print ("storage folder is :",dataPath)
     
-    
     # mecanismo de lock BEGIN
     # -----------------------
-    while os.path.exists(dataPath+"/"+"lock"):
-        time.sleep(1)
-    Path(dataPath+"/"+"lock").touch()
+    lock.lockIN("Reco_Facial")
+
 
     #dataPath = 'B:/Doctorado/Challenges/Data' #Cambia a la ruta donde hayas almacenado Data
     imagePaths = os.listdir(dataPath+ "/" + "Data")
@@ -70,8 +68,8 @@ def executeChallenge():
             
       else:
           #mecanismo de lock END
-          #-----------------------
-         os.remove(dataPath+"/"+"lock")
+         #-----------------------
+         lock.lockOUT("Reco_Facial")
          key_size = 0
          result =(NULL, key_size)
          print ("result:",result)
@@ -117,7 +115,7 @@ def executeChallenge():
 
     #mecanismo de lock END
     #-----------------------
-    os.remove(dataPath+"/"+"lock") 
+    lock.lockOUT("Reco_Facial")
 
 
     #construccion de la respuesta
