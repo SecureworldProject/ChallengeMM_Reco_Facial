@@ -68,10 +68,9 @@ El valor del campo "FileName" debe ser "challenge_loader_python.dll". Dentro del
 Otros campos como "Description" y "Requirements" son opcionales e informativos.
 
 # EJEMPLO:
-Ejemplo de configuración del challenge:
+Ejemplo de configuración del challenge para el modo parental:
 
-{
-	"FileName": "challenge_loader_python.dll",
+{ 	"FileName": "challenge_loader_python.dll",
 	
 	"Props": {
 		"module_python": "Reco_Facial",
@@ -82,10 +81,10 @@ Ejemplo de configuración del challenge:
 	},
 	"Requirements": "none"
 }
+
 A continuación se presenta una configuración en modo no parental, para el caso de uso en empresas. 
 
-{
-	"FileName": "challenge_loader_python.dll",
+{	"FileName": "challenge_loader_python.dll",
 	
 	"Props": {
 		"module_python": "Reco_Facial",
