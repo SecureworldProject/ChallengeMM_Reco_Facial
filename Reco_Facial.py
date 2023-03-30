@@ -65,7 +65,7 @@ def executeChallenge():
         ca1 = messagebox.askquestion(title="Recon_Facial", message="Tienes un móvil con bluetooth activo y emparejado con tu PC con capacidad para tomar un video")
         if (ca1=="yes"):
             # En la siguiente línea se lee un video almacenado para hacer pruebas
-            cap = cv2.VideoCapture(dataPath + "/" + 'Video.mp4')
+            cap = cv2.VideoCapture(dataPath + "/" + '1.jpeg')
         else:
             # Mecanismo de lock END
             #----------------------
@@ -117,20 +117,32 @@ def executeChallenge():
     #----------------------
     lock.lockOUT("Reco_Facial")
 
+    # Get the mode from the properties dictionary (global variable)
+    mode = props_dict["mode"]
+
     # Construcción de la respuesta
-    if res<=0:                  resp = 0
-    elif res>0 and res<=70:     resp = 1
-    elif res>70 and res<=75:    resp = 2
-    elif res>75 and res<=80:    resp = 3
-    elif res>80 and res<=85:    resp = 4
-    elif res>85 and res<=90:    resp = 5
-    elif res>90 and res<=95:    resp = 6
-    elif res>95 and res<=100:   resp = 7
-    elif res>100 and res<=105:  resp = 8
-    elif res>105 and res<=110:  resp = 9
-    elif res>110 and res<=115:  resp = 10
-    elif res>115 and res<=120:  resp = 11
-    elif res>120:               resp = 12
+    if mode == "parental":
+        if res > 0 and res <= 70:   resp= 1
+        else: 
+                                    resp= 0
+        
+    else:   # Modo no parental
+        
+        if res<=0:                  resp = 0
+        elif res>0 and res<=70:     resp = 1
+        elif res>70 and res<=75:    resp = 2
+        elif res>75 and res<=80:    resp = 3
+        elif res>80 and res<=85:    resp = 4
+        elif res>85 and res<=90:    resp = 5
+        elif res>90 and res<=95:    resp = 6
+        elif res>95 and res<=100:   resp = 7
+        elif res>100 and res<=105:  resp = 8
+        elif res>105 and res<=110:  resp = 9
+        elif res>110 and res<=115:  resp = 10
+        elif res>115 and res<=120:  resp = 11
+        elif res>120:               resp = 12
+
+   
 
 
     cad = "%d"%(resp)
@@ -142,6 +154,6 @@ def executeChallenge():
 
 
 if __name__ == "__main__":
-    midict = {}
+    midict = {"mode": "parental"}
     print(init(midict))
     #executeChallenge()
