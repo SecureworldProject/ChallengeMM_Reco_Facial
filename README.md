@@ -95,7 +95,7 @@ A continuación se presenta una configuración en modo no parental, para el caso
 		"validity_time": 3600,
 		"refresh_time": 3000,
 		"mode": "normal",
-		"parental_key": "1234"
+		
 	},
 	"Requirements": "none"
 }
