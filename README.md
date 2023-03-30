@@ -62,8 +62,11 @@ para aprender tkinter: https://www.pythontutorial.net/tkinter/
 El valor del campo "FileName" debe ser "challenge_loader_python.dll". Dentro del campo "Props" debe haber varios pares clave-valor:
 
 "module_python": Debe contener el nombre del archivo del módulo de python  (sin incluir ".py"). En este caso: "Reco_Facial".
+
 "validity_time": el tiempo de validez del challenge en segundos (entero).
+
 "refresh_time": el tiempo en segundos (entero) entre ejecuciones automáticas del challenge.
+
 "modo": determina el modo de ejecución. El modo parental se selecciona si su valor es "parental". De lo contrario, se utiliza el modo no parental.
 
 Otros campos como "Description" y "Requirements" son opcionales e informativos.
