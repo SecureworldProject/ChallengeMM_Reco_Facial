@@ -57,7 +57,8 @@ pip3 install tkinter
 
 para aprender tkinter: https://www.pythontutorial.net/tkinter/
 
-Configuración para validar el challenge
+#Configuración para validar el challenge:
+
 El valor del campo "FileName" debe ser "challenge_loader_python.dll". Dentro del campo "Props" debe haber varios pares clave-valor:
 
 "module_python": Debe contener el nombre del archivo del módulo de python  (sin incluir ".py"). En este caso: "Reco_Facial".
