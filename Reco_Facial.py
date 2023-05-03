@@ -136,12 +136,10 @@ def executeChallenge():
 
     # Construcción de la respuesta
     if mode == "parental":
-        if res > 0 and res <= 70:   resp= 1
-        else: 
-                                    resp= 0
-        
+        if res > 0 and res <= 70:   resp = 1
+        else:                       resp = 0
+
     else:   # Modo no parental
-        
         if res<=0:                  resp = 0
         elif res>0 and res<=70:     resp = 1
         elif res>70 and res<=75:    resp = 2
@@ -156,7 +154,6 @@ def executeChallenge():
         elif res>115 and res<=120:  resp = 11
         elif res>120:               resp = 12
 
-   
 
     cad = "%d"%(resp)
     key = bytes(cad, 'utf-8')
