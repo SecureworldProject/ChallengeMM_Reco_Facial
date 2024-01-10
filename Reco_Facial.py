@@ -5,12 +5,10 @@ import os
 import tkinter as tk
 from tkinter import messagebox
 from pathlib import Path
-import lock
 
 # Para instalar el módulo tkinter usar uno de los siguiente comandos:
 #   pip3 install tkinter
 #   py -m pip install tkinter
-
 
 
 # Variables globales
@@ -23,8 +21,19 @@ def init(props):
 
     # Props es un diccionario
     props_dict = props
-    resultado = ('1', 1) #executeChallenge()
-    if (resultado[1]>0):
+
+    # Ejecución del challenge para ver si funciona (no se comprueba la clave)
+    #executeChallenge()
+
+    # Fake de la ejecución
+    if props_dict["mode"] == "parental":
+        resultado = ('\0', 1)
+
+    else: # Modo no parental
+        resultado = ('1', 1)
+
+    # Comprobación de que la longitud del resultado es mayor que cero (ejecución sin problemas)
+    if (resultado[1] > 0):
         return 0
     else:
         return -1
@@ -37,10 +46,6 @@ def executeChallenge():
     dataPath = os.environ['SECUREMIRROR_CAPTURES']
 
     print("CHALLENGE_RECO_FACIAL --> Storage folder is:", dataPath)
-
-    # Mecanismo de lock BEGIN
-    # -----------------------
-    lock.lockIN("Reco_Facial")
 
 
     #dataPath = 'B:/Doctorado/Challenges/Data' #Cambia a la ruta donde hayas almacenado Data
@@ -64,11 +69,9 @@ def executeChallenge():
         ca1 = messagebox.askquestion(title="Recon_Facial", message="Tienes un móvil con bluetooth activo y emparejado con tu PC con capacidad para tomar un video")
         if (ca1=="yes"):
             # En la siguiente línea se lee un video almacenado para hacer pruebas
-            cap = cv2.VideoCapture(dataPath + "/" + '1.jpeg')
+            #cap = cv2.VideoCapture(dataPath + "/" + '1.jpeg')
+            cap = cv2.VideoCapture(dataPath + "/" + 'Video.mp4')
         else:
-            # Mecanismo de lock END
-            #----------------------
-            lock.lockOUT("Reco_Facial")
             key_size = 0
             result = (NULL, key_size)
             print("CHALLENGE_RECO_FACIAL --> result:", result)
@@ -91,7 +94,6 @@ def executeChallenge():
     if ret == False:
         cap.release()
         cv2.destroyAllWindows()
-        lock.lockOUT("Reco_Facial")
         key_size = 0
         result = (NULL, key_size)
         print("CHALLENGE_RECO_FACIAL --> result:", result)
@@ -127,17 +129,14 @@ def executeChallenge():
     cv2.destroyAllWindows()
 
 
-    # Mecanismo de lock END
-    #----------------------
-    lock.lockOUT("Reco_Facial")
 
     # Get the mode from the properties dictionary (global variable)
     mode = props_dict["mode"]
 
     # Construcción de la respuesta
     if mode == "parental":
-        if res > 0 and res <= 70:   resp = 1
-        else:                       resp = 0
+        if res > 0 and res <= 70:   cad = '\0'
+        else:                       cad = '\u0001'
 
     else:   # Modo no parental
         if res<=0:                  resp = 0
@@ -154,8 +153,8 @@ def executeChallenge():
         elif res>115 and res<=120:  resp = 11
         elif res>120:               resp = 12
 
+        cad = "%d"%(resp)
 
-    cad = "%d"%(resp)
     key = bytes(cad, 'utf-8')
     key_size = len(key)
     result = (key, key_size)
